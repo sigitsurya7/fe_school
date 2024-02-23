@@ -14,17 +14,17 @@ export const PresensiSiswa = {
     children: [
         {
             name: "Data Kartu Siswa",
-            path: '/master/activity',
+            path: '/siswa/kartu_siswa',
             element: '',
         },
         {
             name: "Absensi Harian",
-            path: '/master/departement',
+            path: '/siswa/absensi_harian',
             element: ''
         },
         {
             name: "Rekap Data Siswa",
-            path: '/master/klasifikasi',
+            path: '/siswa/rekap_siswa',
             element: ''
         }
     ]
@@ -37,17 +37,17 @@ export const PresensiGuru = {
     children: [
         {
             name: "Data Kartu Guru",
-            path: '/master/activity',
+            path: '/guru/kartu_guru',
             element: '',
         },
         {
             name: "Absensi Harian",
-            path: '/master/departement',
+            path: '/guru/absensi_harian',
             element: ''
         },
         {
             name: "Rekap Data Guru",
-            path: '/master/klasifikasi',
+            path: '/guru/rekap_guru',
             element: ''
         }
     ]

@@ -5,20 +5,26 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
 
     const [currentPage, setCurrentPage] = useState(1)
     const [searchTerm, setSearchTerm] = useState("")
-    const itemsPerPage =  10
+    const [itemsPerPage, setItemPerPage] =  useState('')
     const [ refData, setRefData ] = useState(data)
 
-    const response = data
+    const response = data.data
     const meta = data
 
     const handlePageChange = (page) => {
         setCurrentPage(page)
     }
 
+    const handleItemChange = (e) => {
+        const selectedValue = e.target.value
+        setItemPerPage(selectedValue)
+    }
+    console.log('Nilai yang dipilih:', itemsPerPage);
+
     useEffect(() => {
-        // fetch(currentPage)
+        fetch(currentPage, itemsPerPage)
         setRefData(data)
-    }, [currentPage])
+    }, [currentPage, itemsPerPage])
 
     const filteredData = response ? response.filter((item) => {
         const searchTerms = searchTerm.toLowerCase().split(" ");
@@ -27,7 +33,7 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
                     String(value).toLowerCase().includes(term)
                 )
             );
-    }) : refData ? refData.data.filter((item) => {
+    }) : refData ? refData.filter((item) => {
         const searchTerms = searchTerm.toLowerCase().split(" ");
             return searchTerms.every((term) =>
                 Object.values(item).some((value) =>
@@ -36,7 +42,7 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
             );
     }) : [];
 
-    const totalPages = meta && meta.total ? Math.ceil(meta.total / itemsPerPage) : 0;
+    const totalPages = meta && meta.total ? meta.total : 0;
 
     const renderPagination = () => {
         const pageNumbers = []
@@ -119,6 +125,13 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
                 <span className="text-xl font-semibold capitalize">{ tableName }</span>
 
                 <div className="flex gap-4 flex-wrap">
+                <select className="select select-bordered max-w-xs" onChange={handleItemChange}>
+                    <option disabled selected>Data di tampilkan</option>
+                    <option value={'10'}>10</option>
+                    <option value={'25'}>25</option>
+                    <option value={'50'}>50</option>
+                    <option value={'100'}>100</option>
+                </select>
                 <input
                     type="text"
                     placeholder="Search..."
@@ -130,6 +143,7 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
                 </div>
             </div>
 
+
             <table className="table table-fixed">
                 <thead>
                     <tr>
@@ -139,7 +153,7 @@ const Table = ( { tableName, thead, data, button, funcButton, children, fetch, c
                 <tbody>
                     { filteredData.length > 0 ? filteredData.map((item, index) => (
                         <tr key={index}>{children(item, index)}</tr>
-                    )) : <td className="text-center font-semibold w-full" colSpan={5}>Tidak Ada Data</td> }
+                    )) : <td className="text-center font-semibold w-full" colSpan={thead.length}>Tidak Ada Data</td> }
                 </tbody>
             </table>
             <div className="pagination mt-10 flex gap-2 justify-center">

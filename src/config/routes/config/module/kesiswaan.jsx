@@ -14,12 +14,12 @@ export const LaporanSiswa = {
     children: [
         {
             name: "Data Prestasi",
-            path: '/master/activity',
+            path: '/laporan/data_prestasi',
             element: '',
         },
         {
             name: "Data Pelanggaran",
-            path: '/master/departement',
+            path: '/laporan/data_pelanggaran',
             element: ''
         }
     ]

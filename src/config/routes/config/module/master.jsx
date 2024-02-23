@@ -12,27 +12,27 @@ export const Master = [
         children: [
             {
                 name: "Level",
-                path: '/master/activity',
+                path: '/master/level',
                 element: '',
             },
             {
                 name: "Kelas",
-                path: '/master/departement',
+                path: '/master/kelas',
                 element: ''
             },
             {
                 name: "Jurusan",
-                path: '/master/klasifikasi',
+                path: '/master/jurusan',
                 element: ''
             },
             {
                 name: "Ruang",
-                path: '/master/rank_bahaya',
+                path: '/master/ruang',
                 element: ''
             },
             {
                 name: "Mata Pelajaran",
-                path: '/master/rank_bahaya',
+                path: '/master/mata_pelajaran',
                 element: ''
             }
         ]
@@ -44,12 +44,12 @@ export const Master = [
         children: [
             {
                 name: "Daftar Siswa",
-                path: '/master/activity',
+                path: '/master/daftar_siswa',
                 element: '',
             },
             {
                 name: "Daftar Guru",
-                path: '/master/departement',
+                path: '/master/daftar_guru',
                 element: ''
             }
         ]
